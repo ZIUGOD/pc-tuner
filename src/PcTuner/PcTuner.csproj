@@ -22,4 +22,8 @@
     <InternalsVisibleTo Include="PcTuner.Tests" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Resource Include="Assets\Fonts\*.ttf" />
+  </ItemGroup>
+
 </Project>

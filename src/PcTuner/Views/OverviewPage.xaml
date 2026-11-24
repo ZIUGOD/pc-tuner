@@ -3,11 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="32,26" MaxWidth="920">
+            <TextBlock Style="{StaticResource Prompt}" Text="root@pc-tuner:~$ ./sistema --resumo" />
             <TextBlock Style="{StaticResource PageTitle}" Text="Visão geral" />
             <TextBlock x:Name="Subtitle" Style="{StaticResource PageSubtitle}" Text="Lendo informações do PC..." />
 
-            <Border x:Name="AlertBox" Style="{StaticResource Card}" Background="#FFF7ED" BorderBrush="#FED7AA" Visibility="Collapsed">
-                <TextBlock x:Name="AlertText" TextWrapping="Wrap" Foreground="#9A3412" />
+            <Border x:Name="AlertBox" Style="{StaticResource Card}" Background="#1A1608" BorderBrush="#4A3C14" Visibility="Collapsed">
+                <TextBlock x:Name="AlertText" TextWrapping="Wrap" LineHeight="19" Foreground="{StaticResource Caution}" />
             </Border>
 
             <UniformGrid Columns="3">
@@ -22,7 +23,7 @@
                     <StackPanel>
                         <TextBlock Style="{StaticResource MetricLabel}" Text="Memória RAM" />
                         <TextBlock x:Name="RamValue" Style="{StaticResource MetricValue}" />
-                        <ProgressBar x:Name="RamBar" Height="6" Maximum="1" BorderThickness="0" Background="#E5E7EB" Foreground="{StaticResource Accent}" />
+                        <ProgressBar x:Name="RamBar" Maximum="1" />
                         <TextBlock x:Name="RamDetail" Style="{StaticResource CardText}" />
                     </StackPanel>
                 </Border>
@@ -52,7 +53,7 @@
                                     <TextBlock DockPanel.Dock="Right" Foreground="{StaticResource Muted}" Text="{Binding Detail}" />
                                     <TextBlock Style="{StaticResource CardTitle}" Text="{Binding Title}" />
                                 </DockPanel>
-                                <ProgressBar Height="8" Margin="0,8,0,0" Maximum="1" BorderThickness="0" Background="#E5E7EB"
+                                <ProgressBar Height="6" Margin="0,10,0,0" Maximum="1"
                                              Value="{Binding Used, Mode=OneWay}" Foreground="{Binding BarColor}" />
                             </StackPanel>
                         </Border>

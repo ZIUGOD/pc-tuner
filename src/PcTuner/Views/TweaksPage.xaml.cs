@@ -29,6 +29,8 @@ public partial class TweaksPage : UserControl
             Loading.Visibility = Visibility.Collapsed;
 
             await Task.WhenAll(items.Select(i => i.RefreshAsync()));
+            // Os interruptores voltam a ficar ativos ao terminar a leitura e o WPF rola até eles; volta ao topo.
+            Scroller.ScrollToTop();
         };
     }
 }

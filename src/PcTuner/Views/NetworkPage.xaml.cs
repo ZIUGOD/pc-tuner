@@ -36,6 +36,13 @@ public partial class NetworkPage : UserControl
 
     static string Ms(double value) => $"{value:N0} ms";
 
+    System.Windows.Media.Brush GradeBrush(string grade) => (System.Windows.Media.Brush)FindResource(grade switch
+    {
+        "A+" or "A" => "Accent",
+        "B" or "C" => "Caution",
+        _ => "Danger",
+    });
+
     void Show(NetworkReport r)
     {
         DownloadValue.Text = $"{r.DownloadMbps:N0} Mbps";
@@ -47,6 +54,8 @@ public partial class NetworkPage : UserControl
         PingDetail.Text = $"Até 1.1.1.1. Mín {Ms(r.InternetIdle.Min)}, pior 5% {Ms(r.InternetIdle.P95)}, " +
                           $"jitter {Ms(r.InternetIdle.Jitter)}, perda {r.InternetIdle.LossPercent:N0}%.";
 
+        DownGradeValue.Foreground = GradeBrush(r.DownloadGrade);
+        UpGradeValue.Foreground = GradeBrush(r.UploadGrade);
         DownGradeValue.Text = r.DownloadGrade;
         DownGradeDetail.Text = $"Ping sobe para {Ms(r.InternetDuringDownload.Median)} (pior 5%: {Ms(r.InternetDuringDownload.P95)}).";
         UpGradeValue.Text = r.UploadGrade;

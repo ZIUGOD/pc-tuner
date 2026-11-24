@@ -30,33 +30,34 @@ public sealed class TweakItem(Tweak tweak) : ObservableObject
     public string Title => tweak.Title;
     public string Description => tweak.Description;
     public bool HasWarning => tweak.Warning is not null;
-    public string WarningText => "⚠ " + tweak.Warning;
+    public string WarningText => " " + tweak.Warning; // ícone de aviso do Nerd Fonts
 
     public string BadgeText => tweak.Impact switch
     {
-        Impact.High => "Impacto alto",
-        Impact.Medium => "Impacto médio",
-        Impact.Low => "Impacto baixo",
-        Impact.Space => "Libera espaço",
-        _ => "Teste",
+        Impact.High => "[impacto:alto]",
+        Impact.Medium => "[impacto:médio]",
+        Impact.Low => "[impacto:baixo]",
+        Impact.Space => "[libera espaço]",
+        _ => "[experimental]",
     };
 
+    // Fundo quase transparente + texto colorido: destaque discreto no tema escuro.
     public string BadgeBackground => tweak.Impact switch
     {
-        Impact.High => "#E6F4EA",
-        Impact.Medium => "#E8F0FE",
-        Impact.Low => "#EEF0F2",
-        Impact.Space => "#F3E8FD",
-        _ => "#FFF4E0",
+        Impact.High => "#12301F",
+        Impact.Medium => "#0F2A36",
+        Impact.Low => "#161E1B",
+        Impact.Space => "#251C36",
+        _ => "#33280F",
     };
 
     public string BadgeForeground => tweak.Impact switch
     {
-        Impact.High => "#1E7B34",
-        Impact.Medium => "#1A56C4",
-        Impact.Low => "#555B63",
-        Impact.Space => "#7B2FBF",
-        _ => "#A15C00",
+        Impact.High => "#39D98A",
+        Impact.Medium => "#5CC8E8",
+        Impact.Low => "#7E8F88",
+        Impact.Space => "#B794F6",
+        _ => "#E5B454",
     };
 
     public bool IsIdle => !_busy;

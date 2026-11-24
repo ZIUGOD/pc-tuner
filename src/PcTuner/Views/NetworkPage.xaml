@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="32,26" MaxWidth="920">
+            <TextBlock Style="{StaticResource Prompt}" Text="root@pc-tuner:~$ ./rede --ping --velocidade --bufferbloat" />
             <TextBlock Style="{StaticResource PageTitle}" Text="Rede" />
             <TextBlock Style="{StaticResource PageSubtitle}"
                        Text="Mede ping, velocidade e bufferbloat: o quanto o ping sobe quando a conexão está ocupada. É isso que causa lag quando alguém baixa algo enquanto você joga. Leva cerca de 30 segundos." />

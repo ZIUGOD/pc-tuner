@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="32,26" MaxWidth="920">
+            <TextBlock Style="{StaticResource Prompt}" Text="root@pc-tuner:~$ du -sh ~/*" />
             <TextBlock Style="{StaticResource PageTitle}" Text="Espaço em disco" />
             <TextBlock Style="{StaticResource PageSubtitle}"
                        Text="Pastas que costumam crescer muito. Esta tela só mede e explica como liberar espaço: nada é apagado daqui, porque são dados seus." />

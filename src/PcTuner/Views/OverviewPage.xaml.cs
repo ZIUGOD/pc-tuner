@@ -39,7 +39,7 @@ public partial class OverviewPage : UserControl
             string.IsNullOrWhiteSpace(d.Label) ? d.Name : $"{d.Name}  {d.Label}",
             $"{SizeFormat.Format(d.Free)} livres de {SizeFormat.Format(d.Total)}",
             d.UsedFraction,
-            d.UsedFraction > 0.9 ? "#DC2626" : d.UsedFraction > 0.8 ? "#D97706" : "#2563EB")).ToList();
+            d.UsedFraction > 0.9 ? "#F2675A" : d.UsedFraction > 0.8 ? "#E5B454" : "#39D98A")).ToList();
 
         var alerts = new List<string>();
         foreach (var d in s.Drives.Where(d => d.UsedFraction > 0.9))

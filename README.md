@@ -2,7 +2,7 @@
 
 Programa para Windows que deixa o PC e a internet mais rápidos com ajustes que **dá para ligar e desligar**. Cada botão mostra o estado real do sistema, e toda mudança fica registrada num histórico.
 
-Feito em C# com .NET 8 (WPF).
+Feito em C# com .NET 8 (WPF), com visual de terminal escuro e a fonte [Hack Nerd Font](https://www.nerdfonts.com/) embutida (não precisa instalar).
 
 ## O que ele faz
 
@@ -74,9 +74,8 @@ tests/PcTuner.Tests/   testes da lógica (estatísticas de ping, tamanhos, inici
 
 - Temperaturas e uso de CPU/GPU em tempo real
 - Histórico dos testes de rede com gráfico
-- Tema escuro
 - Perfis ("Jogo", "Bateria") que ligam vários ajustes de uma vez
 
 ## Licença
 
-[MIT](LICENSE)
+Código: [MIT](LICENSE). A fonte Hack Nerd Font Mono incluída segue as próprias licenças, descritas em [FONT-LICENSE.md](src/PcTuner/Assets/Fonts/FONT-LICENSE.md).

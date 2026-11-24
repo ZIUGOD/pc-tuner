@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="32,26" MaxWidth="920">
+            <TextBlock Style="{StaticResource Prompt}" Text="root@pc-tuner:~$ ./limpeza --medir" />
             <TextBlock Style="{StaticResource PageTitle}" Text="Limpeza" />
             <TextBlock Style="{StaticResource PageSubtitle}"
                        Text="Apaga só cache e arquivos temporários que o Windows ou os programas recriam. Sempre pede confirmação antes." />
