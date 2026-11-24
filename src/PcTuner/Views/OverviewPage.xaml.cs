@@ -29,7 +29,9 @@ public partial class OverviewPage : UserControl
         UptimeValue.Text = s.Uptime.TotalDays >= 1
             ? $"{(int)s.Uptime.TotalDays} d {s.Uptime.Hours} h"
             : $"{s.Uptime.Hours} h {s.Uptime.Minutes} min";
-        BatteryDetail.Text = s.BatteryPercent is { } battery ? $"Bateria: {battery}%" : "Sem bateria";
+        BatteryDetail.Text = s.BatteryPercent is { } battery ? $"Bateria: {battery}%"
+            : s.HasBattery ? "Bateria: o Windows não informa a carga"
+            : "Sem bateria";
 
         GpuValue.Text = s.Gpus.Count == 0 ? "Não encontrada" : string.Join(Environment.NewLine, s.Gpus);
 

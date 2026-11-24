@@ -152,7 +152,7 @@ public sealed class CleanItem(CleanTarget target) : ObservableObject
     public string Description => target.Description;
     public long Bytes => _bytes;
     public string SizeText => _busy ? "trabalhando..." : _bytes < 0 ? "calculando..." : SizeFormat.Format(_bytes);
-    public bool CanClean => !_busy && _bytes > 0;
+    public bool CanClean => !_busy && _bytes >= 1024 * 1024; // abaixo de 1 MB não vale a limpeza
 
     public async Task MeasureAsync()
     {

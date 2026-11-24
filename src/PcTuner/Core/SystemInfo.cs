@@ -17,6 +17,7 @@ public sealed record SystemSnapshot(
     long RamFree,
     IReadOnlyList<string> Gpus,
     IReadOnlyList<DriveSnapshot> Drives,
+    bool HasBattery,
     int? BatteryPercent,
     TimeSpan Uptime);
 
@@ -48,7 +49,9 @@ public static class SystemInfo
             RamFree: Number64(os, "FreePhysicalMemory") * 1024,
             Gpus: gpus,
             Drives: drives,
-            BatteryPercent: battery is null ? null : Number(battery, "EstimatedChargeRemaining"),
+            HasBattery: battery is not null,
+            // alguns notebooks não informam a carga; nesse caso o valor vem vazio, não zero
+            BatteryPercent: battery?["EstimatedChargeRemaining"] is { } charge ? Convert.ToInt32(charge) : null,
             Uptime: TimeSpan.FromMilliseconds(Environment.TickCount64));
     }
 

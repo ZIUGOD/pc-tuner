@@ -145,46 +145,25 @@ public static class NetworkTester
         }
     }
 
+    // Pedaços pequenos: o upload só é contado quando o servidor confirma o recebimento,
+    // e com 2 MB a medição continua precisa mesmo em conexões lentas.
+    static readonly byte[] UploadChunk = new byte[2_000_000];
+
     static async Task UploadWorker(ByteCounter counter, CancellationToken token)
     {
         while (!token.IsCancellationRequested)
         {
             try
             {
-                using var content = new CountingContent(counter, 10_000_000);
+                using var content = new ByteArrayContent(UploadChunk);
                 using var response = await Http.PostAsync(UploadUrl, content, token);
+                if (response.IsSuccessStatusCode) counter.Add(UploadChunk.Length);
             }
             catch (OperationCanceledException) { return; }
             catch (Exception) when (!token.IsCancellationRequested)
             {
                 try { await Task.Delay(500, token); } catch (OperationCanceledException) { return; }
             }
-        }
-    }
-
-    /// <summary>Corpo de upload que conta os bytes à medida que são enviados.</summary>
-    sealed class CountingContent(ByteCounter counter, long size) : HttpContent
-    {
-        protected override Task SerializeToStreamAsync(Stream stream, TransportContext? context) =>
-            SerializeToStreamAsync(stream, context, CancellationToken.None);
-
-        protected override async Task SerializeToStreamAsync(Stream stream, TransportContext? context, CancellationToken token)
-        {
-            var chunk = new byte[65536];
-            long sent = 0;
-            while (sent < size)
-            {
-                var length = (int)Math.Min(chunk.Length, size - sent);
-                await stream.WriteAsync(chunk.AsMemory(0, length), token);
-                sent += length;
-                counter.Add(length);
-            }
-        }
-
-        protected override bool TryComputeLength(out long length)
-        {
-            length = size;
-            return true;
         }
     }
 }
