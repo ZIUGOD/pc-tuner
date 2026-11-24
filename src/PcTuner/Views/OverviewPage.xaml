@@ -1,0 +1,64 @@
+<UserControl x:Class="PcTuner.Views.OverviewPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="32,26" MaxWidth="920">
+            <TextBlock Style="{StaticResource PageTitle}" Text="Visão geral" />
+            <TextBlock x:Name="Subtitle" Style="{StaticResource PageSubtitle}" Text="Lendo informações do PC..." />
+
+            <Border x:Name="AlertBox" Style="{StaticResource Card}" Background="#FFF7ED" BorderBrush="#FED7AA" Visibility="Collapsed">
+                <TextBlock x:Name="AlertText" TextWrapping="Wrap" Foreground="#9A3412" />
+            </Border>
+
+            <UniformGrid Columns="3">
+                <Border Style="{StaticResource Card}" Margin="0,0,10,10">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource MetricLabel}" Text="Processador" />
+                        <TextBlock x:Name="CpuValue" Style="{StaticResource CardTitle}" Margin="0,6,0,0" />
+                        <TextBlock x:Name="CpuDetail" Style="{StaticResource CardText}" />
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource Card}" Margin="0,0,10,10">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource MetricLabel}" Text="Memória RAM" />
+                        <TextBlock x:Name="RamValue" Style="{StaticResource MetricValue}" />
+                        <ProgressBar x:Name="RamBar" Height="6" Maximum="1" BorderThickness="0" Background="#E5E7EB" Foreground="{StaticResource Accent}" />
+                        <TextBlock x:Name="RamDetail" Style="{StaticResource CardText}" />
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource Card}" Margin="0,0,0,10">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource MetricLabel}" Text="Ligado há" />
+                        <TextBlock x:Name="UptimeValue" Style="{StaticResource MetricValue}" />
+                        <TextBlock x:Name="BatteryDetail" Style="{StaticResource CardText}" />
+                    </StackPanel>
+                </Border>
+            </UniformGrid>
+
+            <Border Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource MetricLabel}" Text="Placa de vídeo" />
+                    <TextBlock x:Name="GpuValue" Style="{StaticResource CardText}" Foreground="{StaticResource Ink}" />
+                </StackPanel>
+            </Border>
+
+            <TextBlock Style="{StaticResource SectionLabel}" Text="DISCOS" />
+            <ItemsControl x:Name="Drives">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource Card}">
+                            <StackPanel>
+                                <DockPanel>
+                                    <TextBlock DockPanel.Dock="Right" Foreground="{StaticResource Muted}" Text="{Binding Detail}" />
+                                    <TextBlock Style="{StaticResource CardTitle}" Text="{Binding Title}" />
+                                </DockPanel>
+                                <ProgressBar Height="8" Margin="0,8,0,0" Maximum="1" BorderThickness="0" Background="#E5E7EB"
+                                             Value="{Binding Used, Mode=OneWay}" Foreground="{Binding BarColor}" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

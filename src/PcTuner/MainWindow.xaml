@@ -1,0 +1,51 @@
+﻿<Window x:Class="PcTuner.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PC Tuner" Width="1060" Height="740" MinWidth="840" MinHeight="560"
+        WindowStartupLocation="CenterScreen" Background="{StaticResource Bg}"
+        FontFamily="Segoe UI" FontSize="13">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="230" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Menu lateral -->
+        <DockPanel Background="{StaticResource Sidebar}">
+            <StackPanel DockPanel.Dock="Top" Margin="30,24,20,26">
+                <TextBlock Text="PC TUNER" Foreground="White" FontSize="20" FontWeight="Bold" />
+                <TextBlock x:Name="VersionText" Foreground="#9CA3AF" FontSize="11" Margin="0,2,0,0" />
+            </StackPanel>
+
+            <StackPanel DockPanel.Dock="Bottom" Margin="30,0,24,20">
+                <TextBlock Text="Disco C:" Foreground="#9CA3AF" FontSize="11" />
+                <ProgressBar x:Name="DiskBar" Height="6" Margin="0,6,0,5" Maximum="1"
+                             Background="#374151" BorderThickness="0" Foreground="#60A5FA" />
+                <TextBlock x:Name="DiskText" Foreground="#D1D5DB" FontSize="11" />
+            </StackPanel>
+
+            <StackPanel>
+                <RadioButton x:Name="NavOverview" Style="{StaticResource NavButton}" Content="Visão geral" Tag="overview" Checked="Nav_Checked" />
+                <RadioButton Style="{StaticResource NavButton}" Content="Otimizações" Tag="tweaks" Checked="Nav_Checked" />
+                <RadioButton Style="{StaticResource NavButton}" Content="Rede" Tag="network" Checked="Nav_Checked" />
+                <RadioButton Style="{StaticResource NavButton}" Content="Inicialização" Tag="startup" Checked="Nav_Checked" />
+                <RadioButton Style="{StaticResource NavButton}" Content="Limpeza" Tag="clean" Checked="Nav_Checked" />
+                <RadioButton Style="{StaticResource NavButton}" Content="Espaço em disco" Tag="disk" Checked="Nav_Checked" />
+            </StackPanel>
+        </DockPanel>
+
+        <!-- Conteúdo -->
+        <DockPanel Grid.Column="1">
+            <Border DockPanel.Dock="Bottom" Background="White" BorderBrush="{StaticResource Line}"
+                    BorderThickness="0,1,0,0" Padding="20,8">
+                <DockPanel>
+                    <Button DockPanel.Dock="Right" Content="Abrir histórico" Style="{StaticResource SecondaryButton}"
+                            Click="OpenHistory_Click" />
+                    <TextBlock x:Name="StatusText" VerticalAlignment="Center" Foreground="{StaticResource Muted}"
+                               TextTrimming="CharacterEllipsis" Text="Pronto." Margin="0,0,12,0" />
+                </DockPanel>
+            </Border>
+            <ContentControl x:Name="PageHost" Focusable="False" />
+        </DockPanel>
+    </Grid>
+</Window>

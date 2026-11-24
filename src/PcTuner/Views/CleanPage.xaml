@@ -1,0 +1,36 @@
+<UserControl x:Class="PcTuner.Views.CleanPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="32,26" MaxWidth="920">
+            <TextBlock Style="{StaticResource PageTitle}" Text="Limpeza" />
+            <TextBlock Style="{StaticResource PageSubtitle}"
+                       Text="Apaga só cache e arquivos temporários que o Windows ou os programas recriam. Sempre pede confirmação antes." />
+
+            <ItemsControl x:Name="Targets">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource Card}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Style="{StaticResource CardTitle}" Text="{Binding Title}" />
+                                    <TextBlock Style="{StaticResource CardText}" Text="{Binding Description}" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Margin="24,0,0,0" VerticalAlignment="Center" MinWidth="110">
+                                    <TextBlock HorizontalAlignment="Right" FontWeight="SemiBold" Margin="0,0,0,6"
+                                               Text="{Binding SizeText}" />
+                                    <Button Style="{StaticResource SecondaryButton}" Content="Limpar"
+                                            HorizontalAlignment="Right" IsEnabled="{Binding CanClean}" Click="Clean_Click" />
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,39 @@
+<UserControl x:Class="PcTuner.Views.DiskPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="32,26" MaxWidth="920">
+            <TextBlock Style="{StaticResource PageTitle}" Text="Espaço em disco" />
+            <TextBlock Style="{StaticResource PageSubtitle}"
+                       Text="Pastas que costumam crescer muito. Esta tela só mede e explica como liberar espaço: nada é apagado daqui, porque são dados seus." />
+            <Button x:Name="AnalyzeButton" Style="{StaticResource PrimaryButton}" Content="Medir tamanhos"
+                    HorizontalAlignment="Left" Margin="0,0,0,14" Click="Analyze_Click" />
+
+            <ItemsControl x:Name="Spots">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource Card}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Style="{StaticResource CardTitle}" Text="{Binding Title}" />
+                                    <TextBlock Style="{StaticResource CardText}" Text="{Binding Advice}" />
+                                    <TextBlock Style="{StaticResource CardText}" FontSize="11" Text="{Binding Path}" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Margin="24,0,0,0" VerticalAlignment="Center" MinWidth="110">
+                                    <TextBlock HorizontalAlignment="Right" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,6"
+                                               Text="{Binding SizeText}" />
+                                    <Button Style="{StaticResource SecondaryButton}" Content="Abrir pasta"
+                                            HorizontalAlignment="Right" Click="Open_Click" />
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
